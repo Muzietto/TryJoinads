@@ -1,6 +1,4 @@
 
-// open Core.String // why compiler errors ?
-
 // who says this is an infix operator?????
 let (>>=) sa fasb = fun newState -> // why not 'stateBind' ?
     let (ss,aa) = sa newState
@@ -21,7 +19,7 @@ type StateClass() =
     member t.Bind(sa: state<'s,'a>, fasb: 'a -> state<'s,'b>): state<'s,'b> = stateBind sa fasb // how come??? bind is a function, not an application!!!
     // remove 'sa fasb' --> "This construct causes code to be less generic"
 //  member t.Bind(sa: state<'s,'a>, fasb: 'a -> state<'s,'b>): state<'s,'b> = sa >>= fasb // mind-blowing!
-    member t.Return(a: 'a): state<'s,'a> = returnS a// was fun s -> (s,a)
+    member t.Return(a: 'a): state<'s,'a> = returnS a // was fun s -> (s,a)
     
 let state = StateClass();;  // with or without new?
 
@@ -48,6 +46,7 @@ let rec monadicLabeler tree =
             (fun leftPLB -> 
                 monadicLabeler right >>= 
                     (fun rightPLB ->
+                        // we are NOT inside the monad!!
                         state.Return(Branch(leftPLB,rightPLB))))
 
 let rec sugaredLabeler tree = state {
@@ -55,10 +54,12 @@ let rec sugaredLabeler tree = state {
         | Leaf ll -> 
             let! n = getState
             do! setState (n+1) // do! e in ce --> state.Bind(s,fun () -> Translation(ce))
+            // we ARE inside the monad!!
             return Leaf(n,ll)
         | Branch(left,right) ->
             let! leftPLB = sugaredLabeler left
             let! rightPLB = sugaredLabeler right
+            // we ARE inside the monad!!
             return Branch(leftPLB,rightPLB)
 }
 
