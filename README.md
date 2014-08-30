@@ -21,12 +21,14 @@ in a unified, powerful syntax.
 Still a lot of work in progress.
 
 I am in debt with:
+
 http://www.navision-blog.de/blog/2009/10/23/using-monads-in-fsharp-part-i-the-state-monad/
 
 References for my study are:
-1) Functional Programming using F# (Hansen, Richel - Cambridge University Press)
-2) The F# Computation Expression Zoo (http://research.microsoft.com/pubs/217375/computation-zoo.pdf)
-3) The Computation Expression Series (http://fsharpforfunandprofit.com/posts/computation-expressions-intro/#series-toc)
+
++ Functional Programming using F# (Hansen, Richel - Cambridge University Press)
++ The F# Computation Expression Zoo (http://research.microsoft.com/pubs/217375/computation-zoo.pdf)
++ The Computation Expression Series (http://fsharpforfunandprofit.com/posts/computation-expressions-intro/#series-toc)
 
 Any feedback is welcome.
 
