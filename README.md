@@ -1,7 +1,7 @@
 TryJoinads - WORK IN PROGRESS
 =============================
 
-Experiments with computation expressions in F#.
+Experiments with computation expressions in F#/OCaml.
 
 The scripts in this repository may be loaded and executed on the tryjoinads.org site.
 
